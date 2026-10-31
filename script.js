@@ -252,7 +252,8 @@
 
     // theme
     $("#theme-select").addEventListener("change", (e) => applyTheme(e.target.value));
-    applyTheme(store.get("theme", "dark"));
+    // applyTheme(store.get("theme", "dark"));
+    applyTheme(store.get("theme", "light"));
 
     // language
     $("#language-select").addEventListener("change", (e) => applyLang(e.target.value));
