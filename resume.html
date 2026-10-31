@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sachin Sahil CV</title>
+  <meta name="description" content="Printable CV for Sachin Sahil, security engineer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#121821; --muted:#5a6675; --accent:#0d9488; --line:#dce2ea; --mono:"JetBrains Mono",monospace; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Inter",system-ui,sans-serif; color:var(--ink); background:#eef1f5; line-height:1.5; }
+
+    .toolbar {
+      position:sticky; top:0; z-index:5; display:flex; gap:.6rem; justify-content:center; align-items:center;
+      padding:.8rem; background:#0d111a; border-bottom:1px solid #1b2433;
+    }
+    .toolbar a, .toolbar button {
+      font-family:var(--mono); font-size:.82rem; cursor:pointer; text-decoration:none;
+      padding:.5rem .9rem; border-radius:8px; border:1px solid #2a3647; background:#121826; color:#e6edf6;
+    }
+    .toolbar .primary { background:#5eead4; color:#052e2b; border-color:#5eead4; font-weight:600; }
+    .toolbar .hint { color:#8ea0b8; border:none; background:none; font-family:var(--mono); font-size:.74rem; }
+
+    .page {
+      max-width:820px; margin:1.2rem auto; background:#fff; padding:2.4rem 2.6rem;
+      box-shadow:0 10px 40px -20px rgba(0,0,0,.4);
+    }
+    header.cv-head { border-bottom:2px solid var(--ink); padding-bottom:.9rem; margin-bottom:1.1rem; }
+    header.cv-head h1 { margin:0; font-size:2rem; letter-spacing:-.01em; }
+    header.cv-head .role { color:var(--accent); font-weight:600; font-size:1rem; margin:.15rem 0 .5rem; }
+    .meta { font-family:var(--mono); font-size:.78rem; color:var(--muted); display:flex; flex-wrap:wrap; gap:.2rem 1rem; }
+    .meta a { color:var(--muted); text-decoration:none; }
+
+    section.cv { margin:1.15rem 0; }
+    section.cv > h2 {
+      font-size:.82rem; text-transform:uppercase; letter-spacing:.14em; color:var(--accent);
+      border-bottom:1px solid var(--line); padding-bottom:.3rem; margin:0 0 .7rem;
+    }
+    .summary { font-size:.95rem; color:#2a3340; }
+    .entry { margin-bottom:.85rem; }
+    .entry-top { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; }
+    .entry-top .t { font-weight:600; font-size:.96rem; }
+    .entry-top .t .org { color:var(--accent); font-weight:500; }
+    .entry-top .d { font-family:var(--mono); font-size:.74rem; color:var(--muted); white-space:nowrap; }
+    .entry .desc { font-size:.88rem; color:#39434f; margin:.2rem 0 0; }
+    .tags { font-family:var(--mono); font-size:.72rem; color:var(--muted); margin-top:.25rem; }
+    .skill-cols { columns:2; column-gap:2rem; font-size:.88rem; }
+    .skill-cols .s { break-inside:avoid; margin-bottom:.3rem; }
+    .skill-cols .s b { font-weight:600; }
+    .two { display:grid; grid-template-columns:1fr 1fr; gap:.2rem 1.5rem; }
+
+    @media (max-width:640px){ .page{ padding:1.4rem; } .two,.skill-cols{ grid-template-columns:1fr; columns:1; } .entry-top{ flex-direction:column; } }
+
+    @media print {
+      @page { margin:14mm; }
+      body { background:#fff; }
+      .toolbar { display:none; }
+      .page { margin:0; box-shadow:none; max-width:none; padding:0; }
+      a { color:var(--ink); }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <a href="index.html">← back to site</a>
+    <button class="primary" onclick="window.print()">⇩ download / print PDF</button>
+    <span class="hint">tip: choose “Save as PDF” in the print dialog</span>
+  </div>
+
+  <div class="page" id="cv"><!-- rendered from data.js --></div>
+
+  <script src="data.js"></script>
+  <script>
+    (function () {
+      const S = window.SITE;
+      const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+      const p = S.profile;
+
+      const summary =
+        "Security engineer based in Manchester with nearly four years across identity, application and cloud security, at BMC Software, Metron Security and now Cytix. I like the part of the job that actually reduces risk: investigating issues, gathering the evidence, and following fixes through to the end. MSc Cyber Security, Distinction (Lancaster), and CompTIA Security+.";
+
+      const skills = [
+        ["Identity & access", "Okta, Beyond Identity, SailPoint IdentityIQ, MFA"],
+        ["Application & cloud", "Cloudflare WAF, Flask APIs, Azure, AWS, OWASP"],
+        ["Automation & data", "Python, PowerShell, Power Automate, Power BI, CI/CD"],
+        ["Security practice", "Anomaly detection, incident triage, access reviews, control reporting"],
+        ["AI security", "Agentic AI pen testing evaluation, benchmarking, LLM safety"],
+        ["Frameworks", "ISO 27001, NIST CSF"],
+      ];
+
+      const entry = (it) => `
+        <div class="entry">
+          <div class="entry-top">
+            <div class="t">${esc(it.title)} <span class="org">· ${esc(it.org)}</span></div>
+            <div class="d">${esc(it.date)}</div>
+          </div>
+          <p class="desc">${esc(it.desc)}</p>
+          ${it.chips && it.chips.length ? `<div class="tags">${it.chips.map(esc).join(" · ")}</div>` : ""}
+        </div>`;
+
+      const section = (title, inner) => `<section class="cv"><h2>${title}</h2>${inner}</section>`;
+
+      const linkMeta = [
+        `<a href="mailto:${p.email}">${p.email}</a>`,
+        esc(p.phone),
+        esc(p.location),
+        `<a href="${p.links.linkedin}">linkedin.com/in/sachin-sahil</a>`,
+        `<a href="${p.links.github}">github.com/sachin2912</a>`,
+      ].join('<span>·</span> ');
+
+      const html = `
+        <header class="cv-head">
+          <h1>${esc(p.name)}</h1>
+          <div class="role">${esc(p.role)}</div>
+          <div class="meta">${linkMeta}</div>
+        </header>
+        ${section("Summary", `<p class="summary">${esc(summary)}</p>`)}
+        ${section("Skills", `<div class="skill-cols">${skills.map(([k, v]) => `<div class="s"><b>${esc(k)}:</b> ${esc(v)}</div>`).join("")}</div>`)}
+        ${section("Experience", S.timeline.work.items.map(entry).join(""))}
+        ${section("Education", S.timeline.education.items.map(entry).join(""))}
+        ${section("Internships", S.timeline.internships.items.map(entry).join(""))}
+        ${section("Part-time & community", S.timeline.community.items.map(entry).join(""))}
+        ${section("Certifications", `<div class="two">${S.certifications.map((c) => `<div class="entry"><div class="entry-top"><div class="t">${esc(c.name)}</div><div class="d">${esc(c.date)}</div></div></div>`).join("")}</div>`)}
+      `;
+      document.getElementById("cv").innerHTML = html;
+      document.title = p.name + " CV";
+    })();
+  </script>
+</body>
+</html>

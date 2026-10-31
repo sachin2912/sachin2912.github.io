@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sachin Sahil · Security Engineer</title>
+  <meta name="description" content="Sachin Sahil, security engineer based in Manchester. Identity, application and cloud security; currently building and evaluating agentic AI penetration testing with Cytix." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <a class="skip-link" href="#main">skip to content</a>
+
+  <!-- ===================== top bar ===================== -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="logo" href="#hero"><span class="prompt">sachin@portfolio</span><span class="muted">:~$</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">≡</button>
+      <nav id="nav">
+        <ul>
+          <li><a href="#about" data-i18n="nav_about">about</a></li>
+          <li><a href="#now" data-i18n="nav_now">now</a></li>
+          <li><a href="#timeline" data-i18n="nav_timeline">experience</a></li>
+          <li><a href="#skills" data-i18n="nav_skills">skills</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">projects</a></li>
+          <li><a href="#certs" data-i18n="nav_certs">certs</a></li>
+          <li><a href="#terminal" data-i18n="nav_terminal">console</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== controls ===================== -->
+  <section class="controls wrap" aria-label="Display controls">
+    <div class="ctl-group">
+      <span class="ctl-label" data-i18n="a11y_text">text size</span>
+      <button type="button" class="chip-btn" data-font="decrease" aria-label="Decrease text size">A-</button>
+      <button type="button" class="chip-btn" data-font="reset" aria-label="Reset text size">A</button>
+      <button type="button" class="chip-btn" data-font="increase" aria-label="Increase text size">A+</button>
+    </div>
+    <div class="ctl-group">
+      <span class="ctl-label" data-i18n="a11y_contrast">contrast</span>
+      <button type="button" class="chip-btn" id="contrast-toggle" aria-pressed="false">high</button>
+    </div>
+    <div class="ctl-group">
+      <label class="ctl-label" for="theme-select" data-i18n="a11y_theme">theme</label>
+      <select id="theme-select">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="neon">Neon</option>
+        <option value="grey">Grey</option>
+      </select>
+    </div>
+    <div class="ctl-group">
+      <label class="ctl-label" for="language-select" data-i18n="a11y_lang">language</label>
+      <select id="language-select">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="hi">हिन्दी</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="fr">Français</option>
+        <option value="nl">Nederlands</option>
+        <option value="cy">Cymraeg</option>
+        <option value="ga">Gaeilge</option>
+        <option value="sv">Svenska</option>
+      </select>
+    </div>
+  </section>
+
+  <main id="main" class="wrap">
+    <!-- ===================== hero ===================== -->
+    <section id="hero" class="hero">
+      <p class="eyebrow"><span class="dot-live"></span><span data-i18n="hero_eyebrow">access granted</span></p>
+      <h1 class="name" id="hero-name">Sachin Sahil</h1>
+      <p class="typing-line"><span class="prompt">$</span> <span id="typing"></span><span class="cursor">▋</span></p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projects" data-i18n="hero_cta_projects">view projects</a>
+        <a class="btn" href="resume.html" data-i18n="hero_cta_resume">download cv</a>
+        <a class="btn ghost" href="#contact" data-i18n="hero_cta_contact">contact</a>
+      </div>
+      <div class="stat-row" id="hero-stats"><!-- rendered --></div>
+    </section>
+
+    <!-- ===================== about ===================== -->
+    <section id="about" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="about_title">whoami</span></h2>
+      <div class="about-grid">
+        <div>
+          <p class="prose" data-i18n="about_p1"></p>
+          <p class="prose muted" data-i18n="about_p2"></p>
+        </div>
+        <div class="badge-wrap" id="badge-wrap"><!-- rendered --></div>
+      </div>
+    </section>
+
+    <!-- ===================== now ===================== -->
+    <section id="now" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="now_title">current mission</span></h2>
+      <div class="now-grid">
+        <div>
+          <p class="lead" data-i18n="now_intro"></p>
+          <p class="muted" data-i18n="now_goal"></p>
+          <div class="chip-row" id="now-chips"><!-- rendered --></div>
+        </div>
+        <aside class="card now-card">
+          <p class="card-label" data-i18n="now_cta_title">Want to compare notes?</p>
+          <p class="muted" data-i18n="now_cta_copy"></p>
+          <a class="btn primary" id="now-cta-link" href="#" data-i18n="now_cta_btn">start a conversation</a>
+          <p class="mini-note muted" data-i18n="now_cta_note"></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== experience ===================== -->
+    <section id="timeline" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="timeline_title">experience</span></h2>
+      <div id="timeline-root"><!-- rendered --></div>
+    </section>
+
+    <!-- ===================== skills ===================== -->
+    <section id="skills" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="skills_title">skills</span></h2>
+      <div class="skills-grid" id="skills-root"><!-- rendered --></div>
+    </section>
+
+    <!-- ===================== projects ===================== -->
+    <section id="projects" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="projects_title">projects</span></h2>
+      <div class="projects-grid" id="projects-root"><!-- rendered --></div>
+    </section>
+
+    <!-- ===================== certs + volunteering ===================== -->
+    <section id="certs" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="certs_title">certifications</span></h2>
+      <div class="cards-grid" id="certs-root"><!-- rendered --></div>
+      <h3 class="sub-title" data-i18n="volunteering_title">volunteering</h3>
+      <div class="cards-grid" id="volunteering-root"><!-- rendered --></div>
+    </section>
+
+    <!-- ===================== terminal ===================== -->
+    <section id="terminal" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="terminal_title">console</span></h2>
+      <p class="sub" data-i18n="terminal_subtitle">a real console. run commands, and capture the hidden flag. start with 'help'.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+          <span class="terminal-title">sachin@portfolio: ~</span>
+        </div>
+        <div class="terminal-body" id="log-list" role="log" aria-live="polite"></div>
+        <form id="log-form" class="terminal-input" autocomplete="off">
+          <span class="prompt">$</span>
+          <input id="log-entry" name="log-entry" type="text" aria-label="Terminal command" placeholder="help" />
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== contact ===================== -->
+    <section id="contact" class="section">
+      <h2 class="section-title"><span class="hash">$</span> <span data-i18n="contact_title">contact</span></h2>
+      <p class="lead" data-i18n="contact_intro"></p>
+      <div class="contact-grid" id="contact-root"><!-- rendered --></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="muted" data-i18n="footer_text">Stay curious. Keep proving it works.</p>
+      <p class="muted mini-note">© <span id="year"></span> Sachin Sahil 
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
